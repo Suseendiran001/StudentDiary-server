@@ -15,9 +15,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN || 'https://student-diary-client-em9b23pel-suseendiran-s-projects.vercel.app',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+//   credentials: true,
+// }));
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
